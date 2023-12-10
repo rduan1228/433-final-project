@@ -16,7 +16,8 @@ def home():
 @app.route('/generate_feedback', methods=['POST'])
 def generate_feedback():
   try:
-    src_code = request.args.get('source-code', 'Not Specified')
+    src_code = request.form.get('source-code', 'Not Specified')
+    print("Source Code:", src_code)
     sys_content = "As a cybersecurity expert, your task is to assess user input for potential malware presence and determine the likelihood of it being malicious."
     usr_content = 'Comment on the following source code: '+src_code+'.'
     completion = client.chat.completions.create(
