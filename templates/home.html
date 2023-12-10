@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<nav class="topnav">
+    <a id="title" class="active" href="/home">TestYourCode</a>
+</nav>
+
+<div class="dashboard-container"> 
+    <div class="form-container">
+        <h2>Source Code</h2>
+        <form id="input-form" action="/generate_feedback" method="post">
+            <div id="input-field">
+                <label for="source-code">Source Code:</label>
+                <textarea id="source-code" name="source-coden" autofocus></textarea>
+            </div>
+            
+            <button type="submit" value="Submit" onclick="showPopup()">Submit</button>
+        </form>
+    </div>
+
+    <div id="overlay"></div>
+
+    <div id="popup">
+        <p>Result coming soon. Thanks for waiting!</p>
+    </div>
+
+{% endblock %}
