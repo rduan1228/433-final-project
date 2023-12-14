@@ -1,13 +1,11 @@
-{% extends 'base.html' %}
-
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 <nav class="topnav">
-    <a id="title" class="active" href="/home">TestYourCode</a>
+  <a id="title" class="active" href="/home">TestYourCode</a>
 </nav>
 
 <h1>Feedback:</h1>
 <section>
-    <p id="feedback-display">{{fb}}</p>
+  <p id="feedback-display">{{fb | safe }}</p>
 </section>
 
 {% endblock %}

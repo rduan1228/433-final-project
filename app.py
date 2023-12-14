@@ -19,7 +19,11 @@ def generate_feedback():
     src_code = request.form.get('source-code', 'Not Specified')
     print("Source Code:", src_code)
     sys_content = "As a cybersecurity expert, your task is to assess user input for potential malware presence and determine the likelihood of it being malicious."
-    usr_content = 'Comment on the following source code: '+src_code+'.'
+    usr_content = (
+      'Evaluate the provided source code for malware presence, identify any specific malware type, and present the findings in bullet format: '
+      'the first line indicating whether it is malware, change the line, the second line specifying the type of malware of the function of the source code in one sentence if applicable, no other explanation is needed.\n'
+      + src_code
+  )
     completion = client.chat.completions.create(
       model="gpt-4",
       messages=[
@@ -36,9 +40,10 @@ def generate_feedback():
 
 @app.route('/feedback/')
 def practice():
-    return render_template('feedback.html', 
-                           fb = session['feedback']
-                           )
+    feedback = session.get('feedback', 'No feedback available')
+    formatted_feedback = feedback.replace('\n', '<br>')
+    return render_template('feedback.html', fb=formatted_feedback)
+
 
 
 if __name__ == "__main__":
